@@ -1,14 +1,22 @@
 import { NextResponse, type NextRequest } from "next/server";
 import QRCode from "qrcode";
 
-// export const dynamic = "force-dynamic"; // defaults to force-static
-
 export async function GET(request: NextRequest, response: NextResponse) {
+  //get request Url search params
   const searchParam = request.nextUrl.searchParams;
   const inputText = searchParam.get("input");
-  const backgroundColor = searchParam.get("background") || "#ffffff"; // Default to white
-  const foregroundColor = searchParam.get("foreground") || "#000000"; // Default to black
+  const backgroundColorParam = searchParam.get("background");
+  const foregroundColorParam = searchParam.get("foreground");
+
+  //type convention for the QrCode Daa Url
+
   const inputTextString = inputText ? inputText.toString() : "";
+  const backgroundColor = backgroundColorParam
+    ? backgroundColorParam?.toString()
+    : "";
+  const foregroundColor = foregroundColorParam
+    ? foregroundColorParam?.toString()
+    : "";
 
   try {
     const url = await QRCode.toDataURL(inputTextString, {
