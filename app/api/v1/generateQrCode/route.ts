@@ -8,7 +8,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
   const backgroundColorParam = searchParam.get("background");
   const foregroundColorParam = searchParam.get("foreground");
 
-  //type convention for the QrCode Daa Url
+  //type convention for the QrCode Data Url
 
   const inputTextString = inputText ? inputText.toString() : "";
   const backgroundColor = backgroundColorParam
