@@ -1,17 +1,6 @@
 "use client";
 import { useState } from "react";
-import {
-  ChromePicker,
-  AlphaPicker,
-  SketchPicker,
-  GithubPicker,
-  CirclePicker,
-  HuePicker,
-  CompactPicker,
-  SwatchesPicker,
-  MaterialPicker,
-  ColorResult,
-} from "react-color";
+import { SwatchesPicker } from "react-color";
 import About from "./components/About";
 import Hero from "./components/Hero";
 import { generateQrCode } from "./utils";
@@ -19,7 +8,6 @@ import { generateQrCode } from "./utils";
 const HomePage: React.FC = () => {
   const [inputText, setInputText] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("21132e");
   const [foregroundColor, setForegroundColor] = useState("00ff00");
   const [backgroundDisplayColor, setBackgroundDisplayColor] =
@@ -53,7 +41,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="container mx-auto p-8  text-gray-800">
       <Hero />
-      <section id="qrGenerator" className="container min-h-screen px-4 mt-5">
+      {/* <section id="qrGenerator" className="container min-h-screen px-4 mt-5">
         <div className="mb-4 relative">
           <label className="block text-sm font-medium text-gray-700">
             Foreground Color
@@ -132,17 +120,10 @@ const HomePage: React.FC = () => {
             <img src={qrCodeUrl} alt="QR Code" className="max-w-full" />
           </div>
         )}
-        <h1 className="font-bold text-2xl">pickers</h1>
-        <div>
-          <h1> SwatchesPicker </h1>
-          <div className="h-52 w-52" style={{ backgroundColor: swatchColor }}>
-            gggg
-          </div>
-        </div>
-      </section>
+      </section> */}
       {/*  */}
       <section
-        id=""
+        id="qrGenerator"
         className="grid grid-cols-1 md:grid-cols-4   w-full h-full md:max-w-screen-xl"
       >
         <div className="md:col-span-1 bg-gray-100 h-full">
@@ -153,19 +134,37 @@ const HomePage: React.FC = () => {
             <div className=" w-52 h-52 rounded-md bg-white flex flex-col items-center justify-center gap-2 ">
               <h1 className="text-center font-bold mt-1">Foreground Color</h1>
               <div
-                className="bg-green-300 w-32 h-32 rounded-md"
-                onClick={() => {}}
+                className="bg-gray-300 w-32 h-32 rounded-md flex flex-col items-center justify-center gap-2"
+                onClick={() => setShowColorPickerFore((prev) => !prev)}
               >
-                <h3 className="bg-white p-1 rounded-sm  m-1">#00ff00</h3>
+                <input
+                  className="bg-white p-1 rounded-sm  m-1 text-center w-28"
+                  type="text"
+                  placeholder={foregroundDisplayColor}
+                />
+
+                <div
+                  className=" w-24 h-24 rounded-md hover:cursor-pointer mb-2"
+                  style={{ backgroundColor: foregroundDisplayColor }}
+                ></div>
               </div>
             </div>
             <div className="  w-52 h-52 rounded-md bg-white flex flex-col items-center justify-center gap-2 ">
               <h1 className="text-center font-bold mt-1">Background Color</h1>
               <div
-                className="bg-green-300 w-32 h-32 rounded-md"
-                onClick={() => {}}
+                className="bg-gray-300 w-32 h-32 rounded-md flex flex-col items-center justify-center gap-2"
+                onClick={() => setShowColorPickerBack((prev) => !prev)}
               >
-                <h3 className="bg-white p-1 rounded-sm   m-1">#00ff00</h3>
+                <input
+                  className="bg-white p-1 rounded-sm   m-1 text-center w-28"
+                  type="text"
+                  placeholder={backgroundDisplayColor}
+                />
+
+                <div
+                  className=" w-24 h-24 rounded-md hover:cursor-pointer mb-2"
+                  style={{ backgroundColor: backgroundDisplayColor }}
+                ></div>
               </div>
             </div>
           </div>
