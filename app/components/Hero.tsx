@@ -2,8 +2,11 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section id="hero" className="mb-5">
-      <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+    <section
+      id="hero"
+      className=" h-[90vh] flex flex-col items-center justify-start gap-4 "
+    >
+      <h1 className="mx-auto max-w-4xl  text-4xl font-medium tracking-tight text-slate-900 sm:text-7xl">
         Instantly make{" "}
         <span className="relative whitespace-nowrap text-blue-600">
           <svg
