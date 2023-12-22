@@ -2,10 +2,13 @@
 
 import Menubar from "@/public/icons/Menubar";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const { pathname } = useRouter();
+  const isApiPage = pathname.includes("about-api");
   return (
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
       <nav
@@ -38,6 +41,7 @@ const Navbar = () => {
             >
               Home
             </Link>
+
             <Link
               className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
               href="/about-api"
@@ -46,16 +50,17 @@ const Navbar = () => {
             </Link>
             <Link
               className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-              href="#qrGenerator"
+              href={isApiPage ? "/#qrGenerator" : "#qrGenerator"}
             >
               Qrcode Generator
             </Link>
             <Link
               className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-              href="#contact"
+              href={isApiPage ? "/#contact" : "#contact"}
             >
               Contact
             </Link>
+
             <button>
               <Link
                 className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-s md:border-gray-300 md:my-6 md:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500"
@@ -101,13 +106,13 @@ const Navbar = () => {
                   Api
                 </Link>
                 <Link
-                  href="#qrGenerator"
+                  href={isApiPage ? "/#qrGenerator" : "#qrGenerator"}
                   className="p-2 rounded-md hover:bg-white hover:text-green-300 font-bold"
                 >
                   Qrcode Generator
                 </Link>
                 <Link
-                  href="#contact"
+                  href={isApiPage ? "/#contact" : "#contact"}
                   className="p-2 rounded-md hover:bg-white hover:text-green-300 font-bold"
                 >
                   Contact

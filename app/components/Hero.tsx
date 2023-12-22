@@ -4,9 +4,9 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className=" h-[90vh] flex flex-col items-center justify-start gap-4 "
+      className="h-[53vh] md:h-[70vh]  flex flex-col items-center justify-start gap-4 "
     >
-      <h1 className="mx-auto max-w-4xl  text-4xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+      <h1 className="mx-auto max-w-4xl  text-4xl text-center font-medium tracking-tight text-slate-900 sm:text-7xl">
         Instantly make{" "}
         <span className="relative whitespace-nowrap text-blue-600">
           <svg
@@ -21,13 +21,13 @@ const Hero = () => {
         </span>{" "}
         of All types.
       </h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+      <p className="mx-auto mt-6 max-w-2xl text-2xl tracking-tight text-slate-700 text-center">
         Genarate Qrcodes of all types for personal and business purposes. from
         normal text Qrcodes to custom Websites Qrcodes
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
         <button className="bg-sky-500 hover:opacity-50 text-gray-100 rounded-md font-bold text-lg p-3 flex justify-center items-center">
-          <Link href="/about-api">Go to Api</Link>
+          <Link href="/about-api">Go to Docs</Link>
           <svg
             aria-hidden="true"
             className="ml-3 h-3 w-3 flex-none fill-green-300 group-active:fill-current"
