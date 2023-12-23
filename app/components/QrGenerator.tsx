@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import { SwatchesPicker } from "react-color";
 import Image from "next/image";
 import { generateQrCode } from "../utils";
+import Link from "next/link";
 
 const QrGenerator = () => {
   const [inputText, setInputText] = useState("");
@@ -14,9 +15,9 @@ const QrGenerator = () => {
     useState("#000000");
   const [foregroundDisplayColor, setForegroundDisplayColor] =
     useState("#ffffff");
-  //  const [swatchColor, setSwatchColor] = useState("000000");
   const [showColorPickerFore, setShowColorPickerFore] = useState(false);
   const [showColorPickerBack, setShowColorPickerBack] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleColorChange = (
     color: { hex: string },
@@ -37,13 +38,25 @@ const QrGenerator = () => {
       setForegroundDisplayColor(color.hex);
     }
   };
-  function handleQrcodeGeneration() {
-    generateQrCode(inputText, backgroundColor, foregroundColor, setQrCodeUrl);
-    setInputText("");
+
+  async function handleQrcodeGeneration() {
+    try {
+      setIsLoading(true);
+      await generateQrCode(
+        inputText,
+        backgroundColor,
+        foregroundColor,
+        setQrCodeUrl
+      );
+      // console.log({ isLoading });
+      // console.log(qrCodeUrl);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+    setIsLoading(false);
   }
-  function handleInput(e: ChangeEvent<HTMLInputElement>) {
-    setInputText(e.target.value);
-  }
+
   return (
     <section
       id="qrGenerator"
@@ -113,7 +126,7 @@ const QrGenerator = () => {
           <input
             type="text"
             value={inputText}
-            onChange={(e) => handleInput(e)}
+            onChange={(e) => setInputText(e.target.value)}
             placeholder="eg:- https://serm-dev.vercel.app"
             className="w-full p-3 my-3 outline-none rounded-md"
           />
@@ -121,23 +134,34 @@ const QrGenerator = () => {
             onClick={handleQrcodeGeneration}
             className="bg-green-300 hover:opacity-50 font-bold text-white px-2 py-3 rounded-md "
           >
-            Generate
+            {isLoading ? "Generating...." : "Generate"}
           </button>
           <div className="p-3 w-full h-full flex items-center justify-center">
             {" "}
             {qrCodeUrl ? (
-              <div className="mt-8">
+              <div className="bg-gray-100 flex flex-col items-center gap-2 p-2 rounded-md w-full  md:w-1/2 ">
                 <h2 className="text-2xl mb-4">Generated QR Code:</h2>
+                {/* <div className="flex">
+                  <Link
+                    className="w-5 h-5 rounded-full text-center bg-green-400 "
+                    href={qrCodeUrl}
+                    target="_blank"
+                  >
+                    T
+                  </Link>
+                </div> */}
                 <Image
                   width={250}
                   height={250}
                   src={qrCodeUrl}
                   alt="QR Code"
-                  className="max-w-full"
+                  className="max-w-full shadow-lg rounded-md"
                 />
               </div>
             ) : (
-              <p>no qr yet</p>
+              <div className="flex items-center justify-center w-44 h-44 rounded-md shadow-lg bg-green-200">
+                no qr yet
+              </div>
             )}
           </div>
         </div>

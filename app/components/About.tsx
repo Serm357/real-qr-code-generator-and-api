@@ -5,17 +5,18 @@ const About = () => {
     <section>
       {/*  Card Section  */}
       <div className="max-w-5xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <h1 className="text-center text-2xl font-bold mb-3">Comming Soon</h1>
         {/*  Grid  */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {/*  Card  */}
-          <Link
+          <div
             className="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            href="/help"
+            // href="/help"
           >
             <div className="p-4 md:p-5">
               <div className="flex">
                 <svg
-                  className="mt-1 flex-shrink-0 w-5 h-5 text-gray-800 dark:text-gray-200"
+                  className="mt-1 flex-shrink-0 w-5 h-5 text-gray-800"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -33,16 +34,20 @@ const About = () => {
                 </svg>
 
                 <div className="grow ms-5">
-                  <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
-                    Ask our community
+                  <h3 className="group-hover:text-blue-600 font-semibold text-gray-800  ">
+                    Creating Qrcodes of all types:-
                   </h3>
-                  <p className="text-sm text-gray-500">
-                    Get help from 40k+ Qrcoder users
-                  </p>
+                  <ul className="text-sm text-gray-500">
+                    <li>Websites</li>
+                    <li>Wi-Fi</li>
+                    <li>Contacts</li>
+                    <li>Location</li>
+                    <li>Events</li>
+                  </ul>
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
           {/*  End Card  */}
 
           {/*  Card  */}
@@ -70,7 +75,7 @@ const About = () => {
                 </svg>
 
                 <div className="grow ms-5">
-                  <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
+                  <h3 className="group-hover:text-blue-600 font-semibold text-gray-800   dark:text-gray-200">
                     Get help in the app
                   </h3>
                   <p className="text-sm text-gray-500">
@@ -106,7 +111,7 @@ const About = () => {
                 </svg>
 
                 <div className="grow ms-5">
-                  <h3 className="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
+                  <h3 className="group-hover:text-blue-600 font-semibold text-gray-800  ">
                     Email us
                   </h3>
                   <p className="text-sm text-gray-500">

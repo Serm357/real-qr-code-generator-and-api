@@ -2,12 +2,12 @@
 
 import Menubar from "@/public/icons/Menubar";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const isApiPage = pathname.includes("about-api");
   return (
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
