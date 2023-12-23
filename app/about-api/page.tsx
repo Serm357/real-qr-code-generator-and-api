@@ -48,7 +48,7 @@ const QRCodeInfoPage = () => {
       <div className="mb-8">
         <h1 className="text-lg mb-2">Example Usage:</h1>
         <code className="bg-gray-200   p-2 rounded">
-          {`const response = await fetch('/api/v1/generateQrCode?input={inputText}&background={backgroundColor}&foreground={foregroundColor}');`}
+          {`const response = await fetch('"${"baseUrl"}"/api/v1/generateQrCode?input={inputText}&background={backgroundColor}&foreground={foregroundColor}');`}
         </code>
         <div className="mt-3">
           {" "}
