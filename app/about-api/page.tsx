@@ -17,7 +17,7 @@ const QRCodeInfoPage = () => {
       <div className="mb-8">
         <h1 className="text-lg mb-2">Base Url:</h1>
         <code className="bg-gray-200   p-2 rounded">
-          const BaseUrl = "localhost:3000//"
+          const BaseUrl = "https://real-qr-code-generator-and-api.vercel.app/"
         </code>
         <h1 className="text-lg mb-2">API Endpoint:</h1>
         <code className="bg-gray-200   p-2 rounded">
