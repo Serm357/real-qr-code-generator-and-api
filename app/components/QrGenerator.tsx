@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { SwatchesPicker } from "react-color";
 import Image from "next/image";
 import { generateQrCode } from "../utils";
