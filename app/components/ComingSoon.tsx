@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-const About = () => {
+const ComingSoon = () => {
   return (
     <section>
       {/*  Card Section  */}
       <div className="max-w-5xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <h1 className="text-center text-2xl font-bold mb-3">Comming Soon!</h1>
+        <h1 className="text-center text-2xl font-bold mb-3">Comming Soon</h1>
         {/*  Grid  */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {/*  Card  */}
@@ -116,14 +116,13 @@ const About = () => {
                   <h3 className="group-hover:text-blue-600 font-semibold text-gray-800  ">
                     Pro Features
                   </h3>
-                  <p className="text-sm text-gray-500">
-                    Reach us at{" "}
-                    <ul className="text-sm text-gray-500">
-                      <li>Qrcode Scanner</li>
-                      <li>Barcodes</li>
-                      <li>etc</li>
-                    </ul>
-                  </p>
+
+                  <ul className="text-sm text-gray-500">
+                    <li>Qrcode Scanner</li>
+                    <li>Barcodes</li>
+                    <li>Qrcode color via input </li>
+                    <li>and More..</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -136,4 +135,4 @@ const About = () => {
     </section>
   );
 };
-export default About;
+export default ComingSoon;

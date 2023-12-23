@@ -4,7 +4,6 @@ import { ChangeEvent, useState } from "react";
 import { SwatchesPicker } from "react-color";
 import Image from "next/image";
 import { generateQrCode } from "../utils";
-import Link from "next/link";
 
 const QrGenerator = () => {
   const [inputText, setInputText] = useState("");
@@ -60,10 +59,10 @@ const QrGenerator = () => {
   return (
     <section
       id="qrGenerator"
-      className="grid grid-cols-1 md:grid-cols-4   w-full h-full md:max-w-screen-xl md:divide-x-2 max-md:divide-y-2 divide-red-200 "
+      className="grid grid-cols-1 md:grid-cols-4 w-full h-full md:max-w-screen-xl md:divide-x-2 max-md:divide-y-2 divide-sky-200 "
     >
       {/* left side */}
-      <div className="md:col-span-1 bg-gray-100 h-full p-5">
+      <div className="md:col-span-1 rounded-sm bg-gray-200 h-full p-5">
         <h1 className="text-center font-bold text-2xl text-sky-300 mt-3">
           Choose Qrcode Colors
         </h1>
@@ -115,7 +114,7 @@ const QrGenerator = () => {
       </div>
 
       {/* <!-- Right Column --> */}
-      <div className="md:col-span-3 bg-gray-200 h-full p-5 relative">
+      <div className="md:col-span-3 rounded-sm bg-gray-100 h-full p-5 relative">
         {/* <!-- Content for the right column --> */}
         <div className="flex flex-col items-center justify-center gap-2">
           {" "}
@@ -132,7 +131,12 @@ const QrGenerator = () => {
           />
           <button
             onClick={handleQrcodeGeneration}
-            className="bg-green-300 hover:opacity-50 font-bold text-white px-2 py-3 rounded-md "
+            disabled={isLoading}
+            className={
+              isLoading
+                ? "opacity-50 bg-green-500 hover:bg-green-700 font-bold text-white px-2 py-3 rounded-md "
+                : "bg-green-700 hover:bg-green-500 font-bold text-white px-2 py-3 rounded-md "
+            }
           >
             {isLoading ? "Generating...." : "Generate"}
           </button>
@@ -159,8 +163,8 @@ const QrGenerator = () => {
                 />
               </div>
             ) : (
-              <div className="flex items-center justify-center w-44 h-44 rounded-md shadow-lg bg-green-200">
-                no qr yet
+              <div className="flex items-center justify-center w-56 h-56 text-sm rounded-md shadow-lg bg-green-200 p-4 text-center">
+                No Qrcode Generated ! . Type text in input above to generate
               </div>
             )}
           </div>

@@ -7,6 +7,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-.vbb {
-  color: #21132e;
+h1 {
+  @apply font-bold;
 }
