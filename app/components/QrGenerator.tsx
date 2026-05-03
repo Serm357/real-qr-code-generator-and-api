@@ -56,6 +56,50 @@ const QrGenerator = () => {
     setIsLoading(false);
   }
 
+  const handleDownload = async (format: "png" | "jpeg") => {
+    if (!qrCodeUrl) return;
+
+    if (format === "png") {
+      try {
+        // Fetch a new QR code with a transparent background (alpha channel 00)
+        // Note: foregroundColor in the backend API maps to the 'light' color (background)
+        const response = await fetch(
+          `/api/v1/generateQrCode?input=${inputText}&background=${backgroundColor}&foreground=00000000`
+        );
+        const data = await response.json();
+        if (response.ok && data.qrCode) {
+          const a = document.createElement("a");
+          a.href = data.qrCode;
+          a.download = "qrcode.png";
+          a.click();
+        }
+      } catch (err) {
+        console.error("Error downloading transparent PNG", err);
+      }
+    } else if (format === "jpeg") {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const img = new window.Image();
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        if (ctx) {
+          // Fill with a white background since JPEG doesn't support transparency
+          // If the QR code has a transparent background, it will render correctly over white
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          const jpegUrl = canvas.toDataURL("image/jpeg", 1.0);
+          const a = document.createElement("a");
+          a.href = jpegUrl;
+          a.download = "qrcode.jpg";
+          a.click();
+        }
+      };
+      img.src = qrCodeUrl;
+    }
+  };
+
   return (
     <section
       id="qrGenerator"
@@ -161,6 +205,20 @@ const QrGenerator = () => {
                   alt="QR Code"
                   className="max-w-full shadow-lg rounded-md"
                 />
+                <div className="flex gap-4 mt-4 w-full justify-center">
+                  <button
+                    onClick={() => handleDownload("png")}
+                    className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-md flex-1 md:flex-none"
+                  >
+                    Download PNG
+                  </button>
+                  <button
+                    onClick={() => handleDownload("jpeg")}
+                    className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-md flex-1 md:flex-none"
+                  >
+                    Download JPG
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="flex items-center justify-center w-56 h-56 text-sm rounded-md shadow-lg bg-green-200 p-4 text-center">
