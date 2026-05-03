@@ -17,6 +17,20 @@ const QrGenerator = () => {
   const [showColorPickerFore, setShowColorPickerFore] = useState(false);
   const [showColorPickerBack, setShowColorPickerBack] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setLogoUrl(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setLogoUrl(null);
+    }
+  };
 
   const handleColorChange = (
     color: { hex: string },
@@ -45,7 +59,8 @@ const QrGenerator = () => {
         inputText,
         backgroundColor,
         foregroundColor,
-        setQrCodeUrl
+        setQrCodeUrl,
+        logoUrl
       );
       // console.log({ isLoading });
       // console.log(qrCodeUrl);
@@ -173,6 +188,15 @@ const QrGenerator = () => {
             placeholder="eg:- https://serm-dev.vercel.app"
             className="w-full p-3 my-3 outline-none rounded-md"
           />
+          <div className="w-full flex flex-col gap-2 mb-3">
+             <label className="text-gray-600 font-bold">Optional: Upload Logo</label>
+             <input
+               type="file"
+               accept="image/*"
+               onChange={handleLogoUpload}
+               className="w-full p-2 bg-white rounded-md"
+             />
+          </div>
           <button
             onClick={handleQrcodeGeneration}
             disabled={isLoading}
