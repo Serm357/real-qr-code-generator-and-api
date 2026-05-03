@@ -6,7 +6,7 @@ import "../globals.css";
 
 const QRCodeInfoPage = () => {
   return (
-    <section className="p-3 ">
+    <section className="p-3 min-h-screen flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold mb-4 text-center">
         QR Code API Information
       </h1>
@@ -43,6 +43,16 @@ const QRCodeInfoPage = () => {
             foreground color of the QR code.
           </li>
         </ul>
+      </div>
+
+      <div className="mb-8">
+        <h1 className="text-lg mb-2">Transparent Background (PNG):</h1>
+        <p className="mb-2">
+          To generate a QR code with a fully transparent background, set the <code className="text-green-500">foregroundColor</code> parameter to <code className="bg-gray-200 p-1 rounded">00000000</code> (which represents the alpha channel 00).
+        </p>
+        <code className="bg-gray-200 p-2 rounded block">
+          {`const response = await fetch('"{baseUrl}"/api/v1/generateQrCode?input={inputText}&background={backgroundColor}&foreground=00000000');`}
+        </code>
       </div>
 
       <div className="mb-8">
